@@ -17,7 +17,7 @@ docker run -ti -e GIT_REPOSITORY=https://github.com/rawlingsj/quickstarts.git -e
 - `GIT_USER_NAME` - git username
 - `GIT_USER_EMAIL` - git email address
 - `GIT_PASSWORD` - git password _note: password is stored as clear text inside the docker image_
-- `BUILD_NUMBER` - a unique number that will be appended to the branch name that will be pushed
+- `BRANCH_NUMBER` - a unique number in the scope of your git repository that will be appended to and form the branch name 'release$BRANCH_NUMBER'.  Typical values could be a version or build number.
 # Example:
 
 ```
@@ -29,4 +29,6 @@ export $GIT_REPOSITORY_URL=https://github.com/rawlingsj/quickstarts.git
 export $GIT_USER_NAME=joe
 export $GIT_USER_EMAIL=joe.blogs@somewhere.com
 export $GIT_PASSWORD=myp4ssword!
+
+export $BRANCH_NUMBER=1.0.1
 ```

@@ -1,9 +1,12 @@
+#!/bin/bash
+set -x
+
 IFS='/' read -a myarray <<< $GIT_REPOSITORY_URL
 
-GIT_BRANCH="release$BUILD_NUMBER"
+GIT_BRANCH="release$BRANCH_NUMBER"
 # work out the repository and project name from the GIT URL
 GIT_REPOSITORY_NAME=${myarray[3]}
-GIT_PROJECT_NAME="$( cut -d '.' -f 1 <<< " ${myarray[4]} ")";
+GIT_PROJECT_NAME="$( cut -d '.' -f 1 <<< "${myarray[4]}")";
 
 function gclonecd(){
   # clone repo and cd to git repo but removing the '.git' from the directory name
@@ -33,4 +36,4 @@ EOF
 git commit -a -m "string replace for $FILE_PATTERN update from $FROM to $TO"
 git push $GIT_REPOSITORY_URL $GIT_BRANCH
 
-curl --verbose -X POST -u $GIT_USER_NAME:$GIT_PASSWORD -k -d '{"title": "fabric8 CD version update from '$FROM' to '$TO'","head": "'$GIT_REPOSITORY_NAME':'$GIT_BRANCH'","base": "master"}' https://api.github.com/repos/$GIT_REPOSITORY_NAME/$GIT_PROJECT_NAME/pulls
+curl -X POST -u $GIT_USER_NAME:$GIT_PASSWORD -k -d '{"title": "string replace for '$FILE_PATTERN' update from '$FROM' to '$TO'","head": "'$GIT_REPOSITORY_NAME':'$GIT_BRANCH'","base": "master"}' https://api.github.com/repos/$GIT_REPOSITORY_NAME/$GIT_PROJECT_NAME/pulls
