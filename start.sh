@@ -1,5 +1,4 @@
 #!/bin/bash
-set -x
 
 IFS='/' read -a myarray <<< $GIT_REPOSITORY_URL
 
@@ -21,7 +20,13 @@ git checkout -b $GIT_BRANCH
 
 # use sed to search and replace
 find . -name $FILE_PATTERN -exec sed -i 's@'$FROM'@'$TO'@g' {} \;
-git status
+
+# if no changes have been made exit
+git status | grep 'nothing to commit' &> /dev/null
+if [ $? == 0 ]; then
+   echo "nothing has changed after string replace, please check FROM and TO values: $FROM -> $TO"
+   exit -1
+fi
 
 git config --global push.default simple
 git config --global user.email $GIT_USER_EMAIL
