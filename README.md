@@ -5,7 +5,7 @@ This Dockerfile builds an image that will clone a git repo, search and replace s
 # Usage
 
 ```
-docker run -ti -e GIT_REPOSITORY=https://github.com/rawlingsj/quickstarts.git -e FROM="<myversion>1.0.0</myversion>" -e TO="<myversion>2.0.0</myversion>" -e GIT_USER_NAME=joe -e GIT_USER_EMAIL=a@b.com -e GIT_PASSWORD=myp4ssword! -e FILE_PATTERN=pom.xml rawlingsj/git-search-replace-push
+docker run -ti -e BRANCH_NUMBER=13 -e GIT_REPOSITORY_URL=https://github.com/rawlingsj/quickstarts.git -e FROM="<modelVersion>4.0.0</modelVersion>" -e TO="<modelVersion>4.0.1</modelVersion>" -e GIT_USER_NAME=rawlingsj -e GIT_USER_EMAIL=a@b.com -e GIT_PASSWORD=mygitpassword -e FILE_PATTERN=pom.xml rawlingsj/git-search-replace-push
 ```
 
 # Configuration Variables
