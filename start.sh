@@ -33,4 +33,4 @@ EOF
 git commit -a -m "string replace for $FILE_PATTERN update from $FROM to $TO"
 git push $GIT_REPOSITORY_URL $GIT_BRANCH
 
-curl --verbose -X POST -u $GIT_USER_NAME:$GIT_PASSWORD -k -d '{"title": "fabric8 CD version update from '$FROM' to '$TO'","head": "rawlingsj:'$GIT_BRANCH'","base": "master"}' https://api.github.com/repos/$GIT_REPOSITORY_NAME/$GIT_PROJECT_NAME/pulls
+curl --verbose -X POST -u $GIT_USER_NAME:$GIT_PASSWORD -k -d '{"title": "fabric8 CD version update from '$FROM' to '$TO'","head": "'$GIT_REPOSITORY_NAME':'$GIT_BRANCH'","base": "master"}' https://api.github.com/repos/$GIT_REPOSITORY_NAME/$GIT_PROJECT_NAME/pulls
